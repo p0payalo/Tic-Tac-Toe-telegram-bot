@@ -21,10 +21,15 @@ namespace TicTacToeTG
         static TelegramBotClient client;
         static List<BotUser> users;
         static BotHandler handler;
+        static string token;
 
         static void Main(string[] args)
         {
-            client = new TelegramBotClient("<token>");
+            using(StreamReader sr = new StreamReader("token.txt"))
+            {
+                token = sr.ReadLine();
+            }
+            client = new TelegramBotClient(token);
             client.OnMessage += OnMessage;
             client.OnCallbackQuery += OnCallback;
             users = new List<BotUser>();
