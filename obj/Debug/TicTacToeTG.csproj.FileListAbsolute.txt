@@ -1,0 +1,12 @@
+C:\Users\slavi\source\repos\TicTacToeTG\bin\Debug\TicTacToeTG.exe.config
+C:\Users\slavi\source\repos\TicTacToeTG\bin\Debug\TicTacToeTG.exe
+C:\Users\slavi\source\repos\TicTacToeTG\bin\Debug\TicTacToeTG.pdb
+C:\Users\slavi\source\repos\TicTacToeTG\bin\Debug\Newtonsoft.Json.dll
+C:\Users\slavi\source\repos\TicTacToeTG\bin\Debug\Telegram.Bot.dll
+C:\Users\slavi\source\repos\TicTacToeTG\bin\Debug\Newtonsoft.Json.xml
+C:\Users\slavi\source\repos\TicTacToeTG\bin\Debug\Telegram.Bot.xml
+C:\Users\slavi\source\repos\TicTacToeTG\obj\Debug\TicTacToeTG.csproj.CoreCompileInputs.cache
+C:\Users\slavi\source\repos\TicTacToeTG\obj\Debug\TicTacToeTG.csproj.CopyComplete
+C:\Users\slavi\source\repos\TicTacToeTG\obj\Debug\TicTacToeTG.exe
+C:\Users\slavi\source\repos\TicTacToeTG\obj\Debug\TicTacToeTG.pdb
+C:\Users\slavi\source\repos\TicTacToeTG\obj\Debug\TicTacToeTG.csprojAssemblyReference.cache
