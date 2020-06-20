@@ -49,9 +49,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\BotAI.cs" />
     <Compile Include="Core\BotHandler.cs" />
     <Compile Include="Core\BotResponses.cs" />
-    <Compile Include="Core\Game.cs" />
+    <Compile Include="Core\Exceptions\UnknownCharException.cs" />
+    <Compile Include="Core\Games\Game.cs" />
+    <Compile Include="Core\Games\GameWithPlayer.cs" />
+    <Compile Include="Core\Games\TicTacToeAI.cs" />
     <Compile Include="Core\Types\MoveResult.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

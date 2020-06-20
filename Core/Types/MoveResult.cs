@@ -10,13 +10,22 @@ namespace TicTacToeTG.Core.Types
     {
         public bool CanMove { get; set; }
         public bool GameFinished { get; set; }
-        public bool Standoff { get; set; }
+        public bool Tie { get; set; }
+        public bool BotWin { get; set; }
 
-        public MoveResult(bool canMove, bool gameFinished, bool standOff)
+        public MoveResult(bool canMove, bool gameFinished, bool tie)
         {
             CanMove = canMove;
             GameFinished = gameFinished;
-            Standoff = standOff;
+            Tie = tie;
+            BotWin = false;
+        }
+        public MoveResult(bool canMove, bool gameFinished, bool tie, bool botWin)
+        {
+            CanMove = canMove;
+            GameFinished = gameFinished;
+            Tie = tie;
+            BotWin = botWin;
         }
     }
 }

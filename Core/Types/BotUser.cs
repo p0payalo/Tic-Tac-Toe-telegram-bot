@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Telegram.Bot.Types.ReplyMarkups;
+using TicTacToeTG.Core.Games;
 
 namespace TicTacToeTG.Core.Types
 {
@@ -20,5 +21,12 @@ namespace TicTacToeTG.Core.Types
         public string targetCommand { get; set; }
         public Game currentGame { get; set; }
         public int gameMessageId { get; set; }
+        public void Clear()
+        {
+            step = 0;
+            targetCommand = "";
+            currentGame = null;
+            gameMessageId = 0;
+        }
     }
 }

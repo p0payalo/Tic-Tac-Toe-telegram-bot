@@ -29,6 +29,9 @@ namespace TicTacToeTG.Core
             "Please wait, we wait for player response";
 
         public static string GetNewGameMessage() =>
+            "If you want play with player enter /player\nIf you want play with AI play /ai";
+
+        public static string GetNewGameMessageWithPlayer() =>
             "Enter target username";
 
 
