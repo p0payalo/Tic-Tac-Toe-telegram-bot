@@ -17,6 +17,7 @@ namespace TicTacToeTG.Core.Types
         }
         public long chatId { get; set; }
         public string username { get; set; }
+        [field : NonSerialized]
         public int step { get; set; }
         public string targetCommand { get; set; }
         public Game currentGame { get; set; }
