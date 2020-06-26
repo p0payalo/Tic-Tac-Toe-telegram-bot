@@ -184,11 +184,15 @@ namespace TicTacToeTG.Core
                                     user.step++;
                                     user.targetCommand = msg.Text;
                                 }
+                                else
+                                {
+                                    await client.SendTextMessageAsync(msg.Chat.Id, BotResponses.GetHelpMessage());
+                                }
                                 break;
                             case 1:
                                 if (user.targetCommand == "/newgame")
                                 {
-                                    if(msg.Text == "/player")
+                                    if (msg.Text == "/player")
                                     {
                                         if (user.username != null)
                                         {
@@ -203,11 +207,18 @@ namespace TicTacToeTG.Core
                                                 default, default, default, default, BotResponses.GetExitKeyboard());
                                         }
                                     }
-                                    else if(msg.Text == "/ai")
+                                    else if (msg.Text == "/ai")
                                     {
-                                        await client.SendTextMessageAsync(user.chatId, BotResponses.GetAIDifficultyMessage());
+                                        await client.SendTextMessageAsync(user.chatId, BotResponses.GetAIDifficultyMessage(),
+                                            default, default, default, default, BotResponses.GetExitKeyboard());
                                         user.step++;
                                         user.targetCommand = msg.Text;
+                                    }
+                                    else
+                                    {
+                                        await client.SendTextMessageAsync(user.chatId, BotResponses.GetUndefinedCmdMessage());
+                                        await client.SendTextMessageAsync(msg.Chat.Id, BotResponses.GetNewGameMessage(),
+                                            default, default, default, default, BotResponses.GetExitKeyboard());
                                     }
                                 }
                                 break;
@@ -237,7 +248,7 @@ namespace TicTacToeTG.Core
                                 }
                                 else if (user.targetCommand == "/ai")
                                 {
-                                    if(msg.Text == "/easy")
+                                    if (msg.Text == "/easy")
                                     {
                                         StartGameWithAi(0, user);
                                     }
@@ -248,6 +259,12 @@ namespace TicTacToeTG.Core
                                     else if (msg.Text == "/hard")
                                     {
                                         StartGameWithAi(2, user);
+                                    }
+                                    else
+                                    {
+                                        await client.SendTextMessageAsync(user.chatId, BotResponses.GetUndefinedCmdMessage());
+                                        await client.SendTextMessageAsync(user.chatId, BotResponses.GetAIDifficultyMessage(),
+                                            default, default, default, default, BotResponses.GetExitKeyboard());
                                     }
                                 }
                                 break;
