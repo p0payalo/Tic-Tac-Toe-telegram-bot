@@ -15,9 +15,11 @@ namespace TicTacToeTG.Core.Games
         string Human;
         string AI;
         bool userMove;
+        //0 - easy, 1 - hard
+        int difficulty;
 
         public BotUser Player { get; set; }
-        public TicTacToeAI(BotUser player, char HumanChar = 'O')
+        public TicTacToeAI(BotUser player, int diff = 1, char HumanChar = 'O')
         {
             if (Char.ToUpper(HumanChar) == 'O')
             {
@@ -31,6 +33,7 @@ namespace TicTacToeTG.Core.Games
             }
             else throw new UnknownCharException("Unknown player char symbol");
             Player = player;
+            difficulty = diff;
         }
 
         public override void Start()
@@ -88,30 +91,59 @@ namespace TicTacToeTG.Core.Games
             }
             else return new MoveResult(false, false, false);
         }
-        public MoveResult AiMove()
+
+        private List<Move> AvailableMoves()
         {
             List<List<InlineKeyboardButton>> Keyboard = (List<List<InlineKeyboardButton>>)gameKeyboard.InlineKeyboard;
-            int bestScore = -99999;
-            Move move = new Move(0, 0);
-            for (int i = 0; i < 3; i++)
+            List<Move> availableMoves = new List<Move>();
+            for (int i = 0; i < 3; ++i)
             {
-                for(int j = 0; j < 3; j++)
+                for (int j = 0; j < 3; j++)
                 {
-                    if(Keyboard[i][j].Text == " ")
+                    if (Keyboard[i][j].Text == " ")
                     {
-                        Keyboard[i][j].Text = AI;
-                        int score = minimax((List<List<InlineKeyboardButton>>)gameKeyboard.InlineKeyboard, Human, movesCount);
-                        Keyboard[i][j].Text = " ";
-                        if(score > bestScore)
-                        {
-                            bestScore = score;
-                            move.i = i;
-                            move.j = j;
-                        }
+                        availableMoves.Add(new Move(i, j));
                     }
                 }
             }
-            MoveResult res = Move((move.i + 1) * 10 + move.j + 1, null);
+            return availableMoves;
+        }
+
+        public MoveResult AiMove()
+        {
+            MoveResult res = null;
+            List<List<InlineKeyboardButton>> Keyboard = (List<List<InlineKeyboardButton>>)gameKeyboard.InlineKeyboard;
+            if (difficulty == 0)
+            {
+                List<Move> availableMoves = AvailableMoves();
+                Random rnd = new Random();
+                Move move = availableMoves[rnd.Next(availableMoves.Count)];
+                res = Move((move.i + 1) * 10 + move.j + 1, null);
+            }
+            else
+            {
+                int bestScore = -99999;
+                Move move = new Move(0, 0);
+                for (int i = 0; i < 3; i++)
+                {
+                    for (int j = 0; j < 3; j++)
+                    {
+                        if (Keyboard[i][j].Text == " ")
+                        {
+                            Keyboard[i][j].Text = AI;
+                            int score = minimax((List<List<InlineKeyboardButton>>)gameKeyboard.InlineKeyboard, Human, movesCount);
+                            Keyboard[i][j].Text = " ";
+                            if (score > bestScore)
+                            {
+                                bestScore = score;
+                                move.i = i;
+                                move.j = j;
+                            }
+                        }
+                    }
+                }
+                res = Move((move.i + 1) * 10 + move.j + 1, null);
+            }
             return res;
         }
 
@@ -162,7 +194,7 @@ namespace TicTacToeTG.Core.Games
         }
     }
 
-    class Move
+    internal class Move
     {
         public Move(int iter, int jter)
         {

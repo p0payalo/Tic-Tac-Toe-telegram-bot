@@ -144,6 +144,16 @@ namespace TicTacToeTG.Core
             }
         }
 
+        private async void StartGameWithAi(int difficulty, BotUser user)
+        {
+            user.currentGame = new TicTacToeAI(user, difficulty);
+            Message send = await client.SendTextMessageAsync(user.chatId, "Game started",
+                default, default, default, default, user.currentGame.gameKeyboard);
+            user.gameMessageId = send.MessageId;
+            user.currentGame.Start();
+            (user.currentGame as TicTacToeAI).AiMove();
+            await client.EditMessageReplyMarkupAsync(user.chatId, user.gameMessageId, user.currentGame.gameKeyboard);
+        }
 
         public async void ExecuteCommandAsync(Message msg, BotUser user)
         {
@@ -195,13 +205,9 @@ namespace TicTacToeTG.Core
                                     }
                                     else if(msg.Text == "/ai")
                                     {
-                                        user.currentGame = new TicTacToeAI(user);
-                                        Message send = await client.SendTextMessageAsync(user.chatId, "Game started",
-                                            default, default, default, default, user.currentGame.gameKeyboard);
-                                        user.gameMessageId = send.MessageId;
-                                        user.currentGame.Start();
-                                        (user.currentGame as TicTacToeAI).AiMove();
-                                        await client.EditMessageReplyMarkupAsync(user.chatId, user.gameMessageId, user.currentGame.gameKeyboard);
+                                        await client.SendTextMessageAsync(user.chatId, "Choose difficulty\n/easy - easy difficulty\n/hard - hard difficulty");
+                                        user.step++;
+                                        user.targetCommand = msg.Text;
                                     }
                                 }
                                 break;
@@ -227,6 +233,17 @@ namespace TicTacToeTG.Core
                                     {
                                         await client.SendTextMessageAsync(msg.Chat.Id, BotResponses.GetUserNotExistMessage(),
                                             default, default, default, default, BotResponses.GetExitKeyboard());
+                                    }
+                                }
+                                else if (user.targetCommand == "/ai")
+                                {
+                                    if(msg.Text == "/easy")
+                                    {
+                                        StartGameWithAi(0, user);
+                                    }
+                                    else if (msg.Text == "/hard")
+                                    {
+                                        StartGameWithAi(1, user);
                                     }
                                 }
                                 break;
