@@ -139,6 +139,7 @@ namespace TicTacToeTG.Core
                     await client.SendTextMessageAsync(game.GetOpponent(user).chatId, "User cancel game :(");
                     await client.SendTextMessageAsync(game.GetOpponent(user).chatId, BotResponses.GetHelpMessage());
                     await client.SendTextMessageAsync(user.chatId, "You canceled game");
+                    await client.SendTextMessageAsync(user.chatId, BotResponses.GetHelpMessage());
                 }
                 else HandleGameCallbackAsync(callback, user);
             }
