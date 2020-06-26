@@ -19,7 +19,6 @@ namespace TicTacToeTG
     class Program
     {
         static TelegramBotClient client;
-        static List<BotUser> users;
         static BotHandler handler;
         static string token;
 
@@ -32,7 +31,7 @@ namespace TicTacToeTG
             client = new TelegramBotClient(token);
             client.OnMessage += OnMessage;
             client.OnCallbackQuery += OnCallback;
-            users = new List<BotUser>();
+            List<BotUser> users = new List<BotUser>();
             if(System.IO.File.Exists("users.dat"))
             {
                 using (FileStream fs = new FileStream("users.dat", FileMode.Open))
@@ -81,7 +80,7 @@ namespace TicTacToeTG
 
         public static async void OnCallback(object sender, CallbackQueryEventArgs args)
         {
-            BotUser us = users.Find(x => x.chatId == args.CallbackQuery.Message.Chat.Id);
+            BotUser us = handler.users.Find(x => x.chatId == args.CallbackQuery.Message.Chat.Id);
             handler.HandleCallbackAsync(args.CallbackQuery, us);
         }
     }
