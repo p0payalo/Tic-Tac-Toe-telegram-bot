@@ -152,14 +152,13 @@ namespace TicTacToeTG.Core.Games
             {
                 if(IsSmartMove)
                 {
-                    IsSmartMove = !IsSmartMove;
                     move = SmartMove();
                 }
                 else
                 {
-                    IsSmartMove = !IsSmartMove;
                     move = RandomMove();
                 }
+                IsSmartMove = !IsSmartMove;
             }
             else
             {

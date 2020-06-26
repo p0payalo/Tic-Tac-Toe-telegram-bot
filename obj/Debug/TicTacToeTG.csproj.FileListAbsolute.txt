@@ -9,4 +9,3 @@ C:\Users\slavi\source\repos\TicTacToeTG\obj\Debug\TicTacToeTG.csproj.CoreCompile
 C:\Users\slavi\source\repos\TicTacToeTG\obj\Debug\TicTacToeTG.csproj.CopyComplete
 C:\Users\slavi\source\repos\TicTacToeTG\obj\Debug\TicTacToeTG.exe
 C:\Users\slavi\source\repos\TicTacToeTG\obj\Debug\TicTacToeTG.pdb
-C:\Users\slavi\source\repos\TicTacToeTG\obj\Debug\TicTacToeTG.csprojAssemblyReference.cache
