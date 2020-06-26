@@ -205,7 +205,7 @@ namespace TicTacToeTG.Core
                                     }
                                     else if(msg.Text == "/ai")
                                     {
-                                        await client.SendTextMessageAsync(user.chatId, "Choose difficulty\n/easy - easy difficulty\n/hard - hard difficulty");
+                                        await client.SendTextMessageAsync(user.chatId, BotResponses.GetAIDifficultyMessage());
                                         user.step++;
                                         user.targetCommand = msg.Text;
                                     }
@@ -241,9 +241,13 @@ namespace TicTacToeTG.Core
                                     {
                                         StartGameWithAi(0, user);
                                     }
-                                    else if (msg.Text == "/hard")
+                                    else if (msg.Text == "/medium")
                                     {
                                         StartGameWithAi(1, user);
+                                    }
+                                    else if (msg.Text == "/hard")
+                                    {
+                                        StartGameWithAi(2, user);
                                     }
                                 }
                                 break;

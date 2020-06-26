@@ -34,6 +34,9 @@ namespace TicTacToeTG.Core
         public static string GetNewGameMessageWithPlayer() =>
             "Enter target username";
 
+        public static string GetAIDifficultyMessage() =>
+            "Choose difficulty\n/easy - easy difficulty\n/medium - medium difficulty\n/hard - hard difficulty";
+
 
         public static InlineKeyboardMarkup GetGameKeyboard() =>
             new InlineKeyboardMarkup(new List<List<InlineKeyboardButton>>()

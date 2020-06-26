@@ -15,8 +15,10 @@ namespace TicTacToeTG.Core.Games
         string Human;
         string AI;
         bool userMove;
-        //0 - easy, 1 - hard
+        //0 - easy, 1 - medium, 2 - hard
         int difficulty;
+        //variable need for medium difficulty
+        bool IsSmartMove;
 
         public BotUser Player { get; set; }
         public TicTacToeAI(BotUser player, int diff = 1, char HumanChar = 'O')
@@ -34,6 +36,7 @@ namespace TicTacToeTG.Core.Games
             else throw new UnknownCharException("Unknown player char symbol");
             Player = player;
             difficulty = diff;
+            IsSmartMove = false;
         }
 
         public override void Start()
@@ -109,41 +112,60 @@ namespace TicTacToeTG.Core.Games
             return availableMoves;
         }
 
+        private Move SmartMove()
+        {
+            int bestScore = -99999;
+            List<List<InlineKeyboardButton>> Keyboard = (List<List<InlineKeyboardButton>>)gameKeyboard.InlineKeyboard;
+            List<Move> availableMoves = AvailableMoves();
+            Move move = new Move(0, 0);
+            foreach (var item in availableMoves)
+            {
+                Keyboard[item.i][item.j].Text = AI;
+                int score = minimax(Keyboard, Human, movesCount);
+                Keyboard[item.i][item.j].Text = " ";
+                if (score > bestScore)
+                {
+                    bestScore = score;
+                    move.i = item.i;
+                    move.j = item.j;
+                }
+            }
+            return move;
+        }
+
+        private Move RandomMove()
+        {
+            List<Move> availableMoves = AvailableMoves();
+            Random rnd = new Random();
+            return availableMoves[rnd.Next(availableMoves.Count)];
+        }
+
         public MoveResult AiMove()
         {
             MoveResult res = null;
-            List<List<InlineKeyboardButton>> Keyboard = (List<List<InlineKeyboardButton>>)gameKeyboard.InlineKeyboard;
+            Move move = null;
             if (difficulty == 0)
             {
-                List<Move> availableMoves = AvailableMoves();
-                Random rnd = new Random();
-                Move move = availableMoves[rnd.Next(availableMoves.Count)];
-                res = Move((move.i + 1) * 10 + move.j + 1, null);
+                move = RandomMove();
+            }
+            else if (difficulty == 1)
+            {
+                if(IsSmartMove)
+                {
+                    IsSmartMove = !IsSmartMove;
+                    move = SmartMove();
+                }
+                else
+                {
+                    IsSmartMove = !IsSmartMove;
+                    move = RandomMove();
+                }
             }
             else
             {
-                int bestScore = -99999;
-                Move move = new Move(0, 0);
-                for (int i = 0; i < 3; i++)
-                {
-                    for (int j = 0; j < 3; j++)
-                    {
-                        if (Keyboard[i][j].Text == " ")
-                        {
-                            Keyboard[i][j].Text = AI;
-                            int score = minimax((List<List<InlineKeyboardButton>>)gameKeyboard.InlineKeyboard, Human, movesCount);
-                            Keyboard[i][j].Text = " ";
-                            if (score > bestScore)
-                            {
-                                bestScore = score;
-                                move.i = i;
-                                move.j = j;
-                            }
-                        }
-                    }
-                }
-                res = Move((move.i + 1) * 10 + move.j + 1, null);
+                move = SmartMove();
             }
+            res = Move((move.i + 1) * 10 + move.j + 1, null);
             return res;
         }
 
