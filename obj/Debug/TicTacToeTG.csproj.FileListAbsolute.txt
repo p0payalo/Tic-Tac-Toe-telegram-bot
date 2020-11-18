@@ -9,3 +9,14 @@ C:\Users\slavi\source\repos\TicTacToeTG\obj\Debug\TicTacToeTG.csproj.CoreCompile
 C:\Users\slavi\source\repos\TicTacToeTG\obj\Debug\TicTacToeTG.csproj.CopyComplete
 C:\Users\slavi\source\repos\TicTacToeTG\obj\Debug\TicTacToeTG.exe
 C:\Users\slavi\source\repos\TicTacToeTG\obj\Debug\TicTacToeTG.pdb
+D:\Prog Staff\tictac\Tic-Tac-Toe-telegram-bot\bin\Debug\TicTacToeTG.exe.config
+D:\Prog Staff\tictac\Tic-Tac-Toe-telegram-bot\bin\Debug\TicTacToeTG.exe
+D:\Prog Staff\tictac\Tic-Tac-Toe-telegram-bot\bin\Debug\TicTacToeTG.pdb
+D:\Prog Staff\tictac\Tic-Tac-Toe-telegram-bot\bin\Debug\Newtonsoft.Json.dll
+D:\Prog Staff\tictac\Tic-Tac-Toe-telegram-bot\bin\Debug\Telegram.Bot.dll
+D:\Prog Staff\tictac\Tic-Tac-Toe-telegram-bot\bin\Debug\Newtonsoft.Json.xml
+D:\Prog Staff\tictac\Tic-Tac-Toe-telegram-bot\bin\Debug\Telegram.Bot.xml
+D:\Prog Staff\tictac\Tic-Tac-Toe-telegram-bot\obj\Debug\TicTacToeTG.csproj.CoreCompileInputs.cache
+D:\Prog Staff\tictac\Tic-Tac-Toe-telegram-bot\obj\Debug\TicTacToeTG.csproj.CopyComplete
+D:\Prog Staff\tictac\Tic-Tac-Toe-telegram-bot\obj\Debug\TicTacToeTG.exe
+D:\Prog Staff\tictac\Tic-Tac-Toe-telegram-bot\obj\Debug\TicTacToeTG.pdb

@@ -70,7 +70,7 @@ namespace TicTacToeTG
             us.username = msg.From.Username;
             try
             {
-                handler.ExecuteCommandAsync(msg, us);
+                await Task.Factory.StartNew(() => handler.ExecuteCommandAsync(msg, us));
             }
             catch(Exception e)
             {
@@ -81,7 +81,7 @@ namespace TicTacToeTG
         public static async void OnCallback(object sender, CallbackQueryEventArgs args)
         {
             BotUser us = handler.users.Find(x => x.chatId == args.CallbackQuery.Message.Chat.Id);
-            handler.HandleCallbackAsync(args.CallbackQuery, us);
+            await Task.Factory.StartNew(()=>handler.HandleCallbackAsync(args.CallbackQuery, us));
         }
     }
 }
